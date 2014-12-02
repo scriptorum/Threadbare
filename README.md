@@ -1,12 +1,21 @@
 #Threadbare
 
-##Base Code
+This is base code I use in game jams. 
+There's not a lot to it, it's just a basic framework to get [Flaxen](https://github.com/Scriptorum/Flaxen) up and running.
 
-This is base code I use in game jams with ([Flaxen](https://github.com/Scriptorum/Flaxen)).
-There's not a lot to it: it's just a basic framework to get Flaxen up and running in a game jam.
-Threadbare provides a project file, asset folders, an inappropriate icon (I stole HaxePunk's), a default font, 
-art assets necessary to display the HaxePunk console, and some bootstrap code. The code provides a basic Flaxen handler, displays a blank 600x600 window, and binds a key that will dump information about all the entities to entities.txt 
-when D is pressed.
+##Contents
+Threadbare includes...
+* A project file
+* Asset folders
+* An inappropriate icon (I stole HaxePunk's)
+* A default TTF font (also HaxePunk's)
+* Art assets necessary to display the HaxePunk console
+* Some bootstrap code
+
+And the code...
+* Provides a basic Flaxen handler
+* Displays a blank 600x600 window
+* Binds a key that will dump information about all the entities to entities.txt when D is pressed
 
 ##The MIT License (MIT)
 
