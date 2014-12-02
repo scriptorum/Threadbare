@@ -1,6 +1,5 @@
 export/*
 export
-.gitignore
 .DS_Store
 *.bak
 
