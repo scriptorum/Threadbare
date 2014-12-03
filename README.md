@@ -17,6 +17,13 @@ And the code...
 * Displays a blank 600x600 window
 * Binds a key that will dump information about all the entities to entities.txt when D is pressed
 
+##Credits
+* [Flaxen](https://github.com/Scriptorum/Flaxen)
+* [HaxePunk](https://github.com/HaxePunk/HaxePunk)
+* [Ash-Haxe](https://github.com/nadako/Ash-HaXe)
+* [OpenFL](http://www.openfl.org/)
+* Accidental Presidency font from [Tepid Monkey](http://www.tepidmonkey.net)
+
 ##The MIT License (MIT)
 
 Copyright (c) 2014 Eric Lund
