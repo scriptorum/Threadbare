@@ -1,6 +1,9 @@
 package game.handler; 
 
 import com.haxepunk.utils.Key;
+import flaxen.component.Image;
+import flaxen.component.Offset;
+import flaxen.component.Position;
 import flaxen.core.Flaxen;
 import flaxen.core.FlaxenHandler;
 import flaxen.core.Log;
@@ -18,6 +21,7 @@ class PlayHandler extends FlaxenHandler
 
 	override public function start(_)
 	{
+		f.newEntity().add(new Image("art/inscrutablegames.png")).add(Offset.center()).add(Position.center());
 	}
 
 	override public function update(_)
