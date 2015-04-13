@@ -32,7 +32,7 @@ class PlayHandler extends FlaxenHandler
 		if(key == Key.D)
 		{
 			trace("Dumping log(s)");
-			flaxen.util.LogUtil.dumpLog(f, Main.CWD + "entities.txt");
+			flaxen.util.LogUtil.dumpLog(f, Sys.getCwd() + "entities.txt");
 			for(setName in f.getComponentSetKeys())
 				trace(setName + ":{" + f.getComponentSet(setName) + "}");
 		}
