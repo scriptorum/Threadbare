@@ -13,9 +13,9 @@ Threadbare includes...
 * Some bootstrap code
 
 And the code...
-* Provides a basic Flaxen handler
+* Provides a basic Flaxen handler that shows a red dot (exciting!)
 * Displays a 600x600 window with a centered image
-* Binds a key that will dump information about all the entities to entities.txt when D is pressed
+* Binds a key that will log information about all the entities when D is pressed
 
 ##Credits
 * [Flaxen](https://github.com/Scriptorum/Flaxen)
