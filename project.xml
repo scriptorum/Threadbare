@@ -24,7 +24,7 @@
 
     <app title="Threadbare" file="Threadbare" main="game.Main" company="Inscrutable Games" swf-version="11.2"/>
     <app preloader="inscrutablegames.Preloader" if="flash"/>
-    <haxeflag name="--no-traces" unless="debug" if="flash"/>
+    <!-- <haxeflag name="--no-traces" unless="debug" if="flash"/> -->
 
     <window resizable="true" background="0x000000" orientation="landscape"/>
     <window width="600" height="600 " unless="mobile" />    

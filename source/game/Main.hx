@@ -1,7 +1,7 @@
 package game; 
 
-import flaxen.core.Flaxen;
-import flaxen.core.FlaxenOptions;
+import flaxen.Flaxen;
+import flaxen.FlaxenOptions;
 import game.handler.PlayHandler;
 
 class Main extends Flaxen

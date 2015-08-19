@@ -1,9 +1,3 @@
-//
-// This is a flash preloader, it's not used for CPP targets
-// The Assets class is not available at this stage of the bootstrap,
-// so you must use the "native Haxe" way of loading embedded assets.
-//
-
 package inscrutablegames;
 
 import openfl.display.BitmapData;
@@ -15,25 +9,45 @@ import openfl.text.TextFormat;
 import openfl.text.Font;
 import openfl.events.Event;
 import openfl.geom.Rectangle;
+import openfl.Lib;
 import openfl.display.Tilesheet;
 
+// The Assets class is not available at this stage of the bootstrap,
+// so you must use the "native Haxe" way of loading embedded assets.
 @:bitmap("assets/art/inscrutablegames.png") class LogoImage extends BitmapData {}
 @:font("assets/font/AccidentalPresidency.ttf") class MainFont extends Font { }
 
-class Preloader extends Sprite
+/**
+ * This is my Inscrutable Games web preloader, it's not used for CPP targets.
+ * Supports -D defines:
+ *    freezeloader
+ */
+class Preloader extends NMEPreloader
 {
 	private static inline var LOGO_WIDTH:Int = 386;
-	private static inline var LOGO_HEIGHT:Int = 116;
+	private static inline var LOGO_HEIGHT:Int = 136;
 
 	private var tf:TextField;
 	private var tiles:Tilesheet;
 	private var tileData:Array<Float>;
+	private var loadComplete:Bool = false;
+	private var percentLoaded:Float = 0;
+
+	#if slowloader
+	private static inline var SLOW_LOAD_MIN:Int = 5 * 1000; // minimum preload time in ms if -Dslowloader
+	private var loadStart:Int = 0;
+	private var slowLoaded:Bool = false;
+	#end
 
 	public function new()
 	{
 		super();
 
-        graphics.beginFill(0x9d9283);
+		// Meh. Dislike NMEPreloader. Painful to work around it.
+		removeChild(outline);
+		removeChild(progress);
+
+        graphics.beginFill(0x88786f);
         graphics.drawRect(0, 0, getWidth(), getHeight());
         graphics.endFill();
             	
@@ -61,32 +75,53 @@ class Preloader extends Sprite
 		tf.selectable = false;
 		tf.defaultTextFormat = format;
 		addChild(tf);
-	}
-		
-	public function getHeight():Float
-	{
-		return openfl.Lib.current.stage.stageHeight;
+
+		addEventListener(Event.ENTER_FRAME, onEnterFrame);
+		onEnterFrame(null);
 	}
 	
-	public function getWidth():Float
+	// Just need NMEPreloader for the onLoaded call
+	override public function onLoaded(): Void
 	{
-		return openfl.Lib.current.stage.stageWidth;
-	}
-		
-	public function onInit()
-	{
-	}
-	
-	public function onLoaded()
-	{
-		#if !freezeloader
-		dispatchEvent (new Event (Event.COMPLETE));
-		#end
+		loadComplete = true;
+		onEnterFrame(null);
 	}
 
-	public function onUpdate(bytesLoaded:Int, bytesTotal:Int)
+	private function onEnterFrame(_)
 	{
-		var percentLoaded = Math.min(1, bytesLoaded / bytesTotal);		
+		// Support "slow loading" to demo preloader when running local
+		#if slowloader
+			if(loadStart == 0)
+				loadStart = Lib.getTimer();
+			else if(!slowLoaded)
+			{
+				var slowLoadPct:Float = (Lib.getTimer() - loadStart) / SLOW_LOAD_MIN;
+				percentLoaded = Math.max(percentLoaded, slowLoadPct);
+				if(slowLoadPct >= 1.0)
+				{
+					slowLoaded = true;
+					percentLoaded = 1.0;
+				}
+			}
+		#end
+
 		tf.text = Std.int(percentLoaded * 100) + "%";
+
+		if(loadComplete #if (slowloader) && slowLoaded #end)
+		{
+			#if freezeloader
+				tf.text = "100%";
+			#else
+				removeEventListener(Event.ENTER_FRAME, onEnterFrame);
+				super.onLoaded();
+			#end
+		}
+	}
+
+	// Sooooo many things I dislike about NMEPreloader
+	override public function onUpdate(loaded:Int, total:Int): Void
+	{
+		// Have I mentioned I don't like NMEPreloader?
+		percentLoaded = Math.min(0, loaded / total);
 	}
 }
