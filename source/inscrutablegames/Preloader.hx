@@ -20,7 +20,8 @@ import openfl.display.Tilesheet;
 /**
  * This is my Inscrutable Games web preloader, it's not used for CPP targets.
  * Supports -D defines:
- *    freezeloader
+ *    freezeloader - do not progress past preloader screen
+ *    slowloader - guarantee a minimum of 5 seconds loading time
  */
 class Preloader extends NMEPreloader
 {
