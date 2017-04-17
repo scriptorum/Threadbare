@@ -1,8 +1,8 @@
-#Threadbare
+# Threadbare
 
 This is base code I use in game jams. It's a framework to get [Flaxen](https://github.com/Scriptorum/Flaxen) up and running.
 
-##Contents
+## Contents
 Threadbare includes...
 * A project file
 * Asset folders
@@ -17,14 +17,14 @@ And the code...
 * Displays a 600x600 window with a centered image
 * Binds a key that will log information about all the entities when D is pressed
 
-##Credits
+## Credits
 * [Flaxen](https://github.com/Scriptorum/Flaxen)
 * [HaxePunk](https://github.com/HaxePunk/HaxePunk)
 * [Ash-Haxe](https://github.com/nadako/Ash-HaXe)
 * [OpenFL](http://www.openfl.org/)
 * Accidental Presidency font from [Tepid Monkey](http://www.tepidmonkey.net)
 
-##The MIT License (MIT)
+## The MIT License (MIT)
 
 Copyright (c) 2015 Eric Lund
 
